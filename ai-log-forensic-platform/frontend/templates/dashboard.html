@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SOC Dashboard | AI Log Forensics</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0b0f1a;
+            color: #e5fef5;
+        }
+
+        header {
+            background: #020617;
+            padding: 15px 25px;
+            border-bottom: 2px solid #00ff99;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #00ff99;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 220px;
+            background: #020617;
+            height: 100vh;
+            padding-top: 20px;
+            border-right: 2px solid #00ff99;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 12px 20px;
+            color: #66ffcc;
+            text-decoration: none;
+            border-bottom: 1px solid #0f172a;
+        }
+
+        .sidebar a:hover {
+            background: #00ff99;
+            color: #000;
+        }
+
+        /* Main Content */
+        .main {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .cards {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: #020617;
+            padding: 20px;
+            border-radius: 8px;
+            flex: 1;
+            text-align: center;
+            border: 1px solid #00ff99;
+        }
+
+        .card h2 {
+            margin: 0;
+            color: #00ff99;
+            font-size: 32px;
+        }
+
+        .card p {
+            margin: 8px 0 0;
+            color: #66ffcc;
+        }
+
+        h3 {
+            color: #00ff99;
+            margin-top: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background: #020617;
+        }
+
+        th, td {
+            border: 1px solid #0f172a;
+            padding: 8px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            background: #020617;
+            color: #00ff99;
+        }
+
+        tr:nth-child(even) {
+            background: #020617;
+        }
+
+        .alert-high {
+            color: #ff4d4d;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            color: #66ffcc;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🛡️ SOC Dashboard – AI Log Forensics</h1>
+</header>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="#">Dashboard</a>
+        <a href="/systems">Systems</a>
+        <a href="/logs">Logs</a>
+        <a href="/reports">Reports</a>
+        <a href="/">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+
+        <!-- Stats Cards -->
+        <div class="cards">
+            <div class="card">
+                <h2 id="total-systems">0</h2>
+                <p>Systems</p>
+            </div>
+            <div class="card">
+                <h2 id="total-logs">0</h2>
+                <p>Logs Collected</p>
+            </div>
+            <div class="card">
+                <h2 id="total-alerts">0</h2>
+                <p>Alerts</p>
+            </div>
+        </div>
+
+        <!-- Systems Table -->
+        <h3>Registered Systems</h3>
+        <table id="systems-table">
+            <tr>
+                <th>System ID</th>
+                <th>Hostname</th>
+                <th>Last Seen</th>
+            </tr>
+        </table>
+
+        <!-- Alerts Table -->
+        <h3>Security Alerts</h3>
+        <table id="alerts-table">
+            <tr>
+                <th>System ID</th>
+                <th>Description</th>
+                <th>Time</th>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+<footer>
+    © AI-Based Log Investigation Framework | Cyber Forensics
+</footer>
+
+<script>
+    // Load dashboard statistics
+    fetch("/dashboard/stats")
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("total-systems").innerText = data.total_systems;
+            document.getElementById("total-logs").innerText = data.total_logs;
+            document.getElementById("total-alerts").innerText = data.total_alerts;
+        });
+
+    // Load systems
+    fetch("/dashboard/systems")
+        .then(res => res.json())
+        .then(systems => {
+            const table = document.getElementById("systems-table");
+            systems.forEach(sys => {
+                const row = table.insertRow();
+                row.insertCell(0).innerText = sys.system_id;
+                row.insertCell(1).innerText = sys.hostname;
+                row.insertCell(2).innerText = sys.last_seen;
+            });
+        });
+
+    // Load alerts
+    fetch("/dashboard/alerts")
+        .then(res => res.json())
+        .then(alerts => {
+            const table = document.getElementById("alerts-table");
+            alerts.forEach(alert => {
+                const row = table.insertRow();
+                row.insertCell(0).innerText = alert.system_id;
+                row.insertCell(1).innerHTML =
+                    `<span class="alert-high">${alert.description}</span>`;
+                row.insertCell(2).innerText = alert.created_at;
+            });
+        });
+</script>
+
+</body>
+</html>

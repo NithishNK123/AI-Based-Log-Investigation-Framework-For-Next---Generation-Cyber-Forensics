@@ -1,0 +1,32 @@
+# ================================
+# Local Agent Configuration File
+# ================================
+
+server:
+  # Central web platform endpoint
+  url: "http://localhost:8000/api/logs"
+
+  # API key for authenticating agent with server
+  api_key: "TEST_API_KEY_123"
+
+agent:
+  # Time interval (in seconds) between each log collection & sync cycle
+  sync_interval_seconds: 60
+
+  # Maximum number of log lines read from each log file per cycle
+  max_lines_per_file: 50
+
+  # Enable or disable specific log sources
+  collect:
+    system_logs: true
+    application_logs: true
+    windows_event_logs: true
+
+  # Offline behavior settings
+  offline_mode:
+    enabled: true
+    max_storage_mb: 100   # Maximum local storage size for offline logs
+
+  # Agent behavior flags
+  debug:
+    enabled: false

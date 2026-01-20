@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logs | AI Log Forensics</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0b0f1a;
+            color: #e5fef5;
+        }
+
+        header {
+            background: #020617;
+            padding: 15px 25px;
+            border-bottom: 2px solid #00ff99;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #00ff99;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 220px;
+            background: #020617;
+            height: 100vh;
+            padding-top: 20px;
+            border-right: 2px solid #00ff99;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 12px 20px;
+            color: #66ffcc;
+            text-decoration: none;
+            border-bottom: 1px solid #0f172a;
+        }
+
+        .sidebar a:hover {
+            background: #00ff99;
+            color: #000;
+        }
+
+        .main {
+            flex: 1;
+            padding: 20px;
+        }
+
+        h3 {
+            color: #00ff99;
+            margin-bottom: 15px;
+        }
+
+        .filters {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        select, input {
+            padding: 6px;
+            background: #020617;
+            color: #66ffcc;
+            border: 1px solid #00ff99;
+        }
+
+        button {
+            padding: 6px 12px;
+            background: #00ff99;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #020617;
+            font-size: 13px;
+        }
+
+        th, td {
+            border: 1px solid #0f172a;
+            padding: 8px;
+        }
+
+        th {
+            color: #00ff99;
+        }
+
+        .INFO { color: #66ffcc; }
+        .WARNING { color: #ffd966; }
+        .ERROR { color: #ff4d4d; }
+        .CRITICAL { color: #ff1a1a; font-weight: bold; }
+
+        .attack {
+            background: rgba(255,0,0,0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            color: #66ffcc;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>📜 Log Viewer</h1>
+</header>
+
+<div class="container">
+
+    <div class="sidebar">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/systems">Systems</a>
+        <a href="/logs">Logs</a>
+        <a href="/reports">Reports</a>
+        <a href="/">Logout</a>
+    </div>
+
+    <div class="main">
+        <h3>Collected Logs</h3>
+
+        <!-- Filters -->
+        <div class="filters">
+            <input type="text" id="search" placeholder="Search keyword">
+            <select id="level">
+                <option value="">All Levels</option>
+                <option value="INFO">INFO</option>
+                <option value="WARNING">WARNING</option>
+                <option value="ERROR">ERROR</option>
+                <option value="CRITICAL">CRITICAL</option>
+            </select>
+            <input type="number" id="hours" placeholder="Last N hours">
+            <button onclick="loadLogs()">Apply</button>
+        </div>
+
+        <table id="logs-table">
+            <tr>
+                <th>Time</th>
+                <th>System</th>
+                <th>Source</th>
+                <th>Level</th>
+                <th>Message</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<footer>
+    © AI-Based Log Investigation Framework | Cyber Forensics
+</footer>
+
+<script>
+function loadLogs() {
+    const keyword = document.getElementById("search").value;
+    const level = document.getElementById("level").value;
+    const hours = document.getElementById("hours").value;
+
+    let url = "/dashboard/logs?";
+    if (keyword) url += `q=${keyword}&`;
+    if (level) url += `level=${level}&`;
+    if (hours) url += `hours=${hours}&`;
+
+    fetch(url)
+        .then(res => res.json())
+        .then(logs => {
+            const table = document.getElementById("logs-table");
+            table.innerHTML = `
+                <tr>
+                    <th>Time</th>
+                    <th>System</th>
+                    <th>Source</th>
+                    <th>Level</th>
+                    <th>Message</th>
+                </tr>`;
+
+            logs.forEach(log => {
+                const row = table.insertRow();
+                row.className = log.level === "CRITICAL" ? "attack" : "";
+
+                row.insertCell(0).innerText = log.timestamp;
+                row.insertCell(1).innerText = log.system_id;
+                row.insertCell(2).innerText = log.source;
+
+                const levelCell = row.insertCell(3);
+                levelCell.innerText = log.level;
+                levelCell.className = log.level;
+
+                row.insertCell(4).innerText = log.message;
+            });
+        });
+}
+
+// Auto load
+loadLogs();
+
+// Auto refresh every 30 sec
+setInterval(loadLogs, 30000);
+</script>
+
+</body>
+</html>

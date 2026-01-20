@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reports | AI Log Forensics</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0b0f1a;
+            color: #e5fef5;
+        }
+
+        header {
+            background: #020617;
+            padding: 15px 25px;
+            border-bottom: 2px solid #00ff99;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #00ff99;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 220px;
+            background: #020617;
+            height: 100vh;
+            padding-top: 20px;
+            border-right: 2px solid #00ff99;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 12px 20px;
+            color: #66ffcc;
+            text-decoration: none;
+            border-bottom: 1px solid #0f172a;
+        }
+
+        .sidebar a:hover {
+            background: #00ff99;
+            color: #000;
+        }
+
+        /* Main Content */
+        .main {
+            flex: 1;
+            padding: 20px;
+        }
+
+        h3 {
+            color: #00ff99;
+            margin-bottom: 10px;
+        }
+
+        select, button {
+            padding: 8px;
+            margin-right: 10px;
+            background: #020617;
+            border: 1px solid #00ff99;
+            color: #00ff99;
+            border-radius: 4px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #00ff99;
+            color: #000;
+        }
+
+        pre {
+            background: #020617;
+            border: 1px solid #00ff99;
+            padding: 15px;
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            font-size: 13px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            color: #66ffcc;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>📄 Forensic Reports</h1>
+</header>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/systems">Systems</a>
+        <a href="/logs">Logs</a>
+        <a href="/reports">Reports</a>
+        <a href="/">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <h3>Generate Forensic Report</h3>
+
+        <label for="systemSelect">Select System:</label>
+        <select id="systemSelect"></select>
+
+        <button onclick="generateReport()">Generate Report</button>
+
+        <pre id="reportOutput">
+Select a system and click "Generate Report" to view forensic report.
+        </pre>
+    </div>
+
+</div>
+
+<footer>
+    © AI-Based Log Investigation Framework | Cyber Forensics
+</footer>
+
+<script>
+    // Load systems into dropdown
+    fetch("/dashboard/systems")
+        .then(res => res.json())
+        .then(systems => {
+            const select = document.getElementById("systemSelect");
+            systems.forEach(sys => {
+                const option = document.createElement("option");
+                option.value = sys.system_id;
+                option.text = sys.system_id + " (" + sys.hostname + ")";
+                select.appendChild(option);
+            });
+        });
+
+    function generateReport() {
+        const systemId = document.getElementById("systemSelect").value;
+        const output = document.getElementById("reportOutput");
+
+        if (!systemId) {
+            output.innerText = "Please select a system.";
+            return;
+        }
+
+        fetch(`/generate-report/${systemId}`)
+            .then(res => res.text())
+            .then(report => {
+                output.innerText = report;
+            })
+            .catch(() => {
+                output.innerText = "Failed to generate report.";
+            });
+    }
+</script>
+
+</body>
+</html>

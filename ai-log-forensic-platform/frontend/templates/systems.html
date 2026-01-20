@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Systems | AI Log Forensics</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0b0f1a;
+            color: #e5fef5;
+        }
+
+        header {
+            background: #020617;
+            padding: 15px 25px;
+            border-bottom: 2px solid #00ff99;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #00ff99;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 220px;
+            background: #020617;
+            height: 100vh;
+            padding-top: 20px;
+            border-right: 2px solid #00ff99;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 12px 20px;
+            color: #66ffcc;
+            text-decoration: none;
+            border-bottom: 1px solid #0f172a;
+        }
+
+        .sidebar a:hover {
+            background: #00ff99;
+            color: #000;
+        }
+
+        /* Main Content */
+        .main {
+            flex: 1;
+            padding: 20px;
+        }
+
+        h3 {
+            color: #00ff99;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #020617;
+        }
+
+        th, td {
+            border: 1px solid #0f172a;
+            padding: 10px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            color: #00ff99;
+        }
+
+        .online {
+            color: #00ff99;
+            font-weight: bold;
+        }
+
+        .offline {
+            color: #ff4d4d;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            color: #66ffcc;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🖥️ Registered Systems</h1>
+</header>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/systems">Systems</a>
+        <a href="/logs">Logs</a>
+        <a href="/reports">Reports</a>
+        <a href="/">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <h3>Endpoint Systems</h3>
+
+        <table id="systems-table">
+            <tr>
+                <th>System ID</th>
+                <th>Hostname</th>
+                <th>Last Seen</th>
+                <th>Status</th>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<footer>
+    © AI-Based Log Investigation Framework | Cyber Forensics
+</footer>
+
+<script>
+    fetch("/dashboard/systems")
+        .then(response => response.json())
+        .then(systems => {
+            const table = document.getElementById("systems-table");
+
+            systems.forEach(system => {
+                const row = table.insertRow();
+
+                row.insertCell(0).innerText = system.system_id;
+                row.insertCell(1).innerText = system.hostname;
+                row.insertCell(2).innerText = system.last_seen;
+
+                // Simple online/offline logic (demo)
+                const statusCell = row.insertCell(3);
+                if (system.last_seen) {
+                    statusCell.innerHTML = '<span class="online">ONLINE</span>';
+                } else {
+                    statusCell.innerHTML = '<span class="offline">OFFLINE</span>';
+                }
+            });
+        });
+</script>
+
+</body>
+</html>

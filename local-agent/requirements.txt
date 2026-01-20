@@ -1,0 +1,14 @@
+# HTTP communication with central server
+requests
+
+# YAML configuration file support
+pyyaml
+
+# System and process utilities (optional but useful)
+psutil
+
+# Encryption for secure log transmission (AES via Fernet)
+cryptography
+
+# Windows Event Log support (Windows only)
+pywin32; platform_system == "Windows"

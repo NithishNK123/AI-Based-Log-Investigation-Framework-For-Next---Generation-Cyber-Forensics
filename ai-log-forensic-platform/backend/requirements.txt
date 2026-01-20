@@ -1,0 +1,42 @@
+# -------------------------------
+# Core Backend Framework
+# -------------------------------
+flask
+flask_sqlalchemy
+flask_cors
+
+# -------------------------------
+# Database
+# -------------------------------
+SQLAlchemy
+
+# -------------------------------
+# Security & Encryption
+# -------------------------------
+cryptography
+
+# -------------------------------
+# Configuration Handling
+# -------------------------------
+pyyaml
+
+# -------------------------------
+# HTTP Requests (optional future use)
+# -------------------------------
+requests
+
+# -------------------------------
+# AI / Data Processing
+# -------------------------------
+scikit-learn
+numpy
+
+# -------------------------------
+# PDF Report Generation
+# -------------------------------
+reportlab
+
+# -------------------------------
+# Date & Time Utilities (standard but explicit)
+# -------------------------------
+python-dateutil

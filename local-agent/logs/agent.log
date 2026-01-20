@@ -1,0 +1,347 @@
+[2026-01-17 12:39:48,640] INFO - Starting Local Log Collection Agent
+[2026-01-17 12:39:48,645] INFO - System ID initialized: f04b20e2-9bdd-4af0-98da-3834540d979d
+[2026-01-17 12:39:48,703] INFO - Logs synced successfully
+[2026-01-17 12:40:48,706] INFO - Logs synced successfully
+[2026-01-17 12:41:48,709] INFO - Logs synced successfully
+[2026-01-17 12:42:48,712] INFO - Logs synced successfully
+[2026-01-17 12:43:48,715] INFO - Logs synced successfully
+[2026-01-17 12:44:48,718] INFO - Logs synced successfully
+[2026-01-17 12:45:48,720] INFO - Logs synced successfully
+[2026-01-17 12:46:48,723] INFO - Logs synced successfully
+[2026-01-17 17:51:03,925] INFO - Starting Local Log Collection Agent
+[2026-01-17 17:51:03,942] INFO - System ID initialized: f04b20e2-9bdd-4af0-98da-3834540d979d
+[2026-01-17 17:51:06,204] INFO - System registered with server
+[2026-01-17 17:51:06,207] INFO - Logs synced successfully
+[2026-01-17 17:52:06,210] INFO - Logs synced successfully
+[2026-01-17 17:53:06,214] INFO - Logs synced successfully
+[2026-01-17 17:54:06,218] INFO - Logs synced successfully
+[2026-01-17 17:55:06,221] INFO - Logs synced successfully
+[2026-01-17 17:56:06,225] INFO - Logs synced successfully
+[2026-01-17 17:57:30,760] INFO - Starting Local Log Collection Agent
+[2026-01-17 17:57:30,765] INFO - System ID initialized: f04b20e2-9bdd-4af0-98da-3834540d979d
+[2026-01-17 17:57:32,918] INFO - System registered with server
+[2026-01-17 17:57:32,922] INFO - Logs synced successfully
+[2026-01-17 17:58:32,926] INFO - Logs synced successfully
+[2026-01-17 17:59:32,930] INFO - Logs synced successfully
+[2026-01-17 18:00:32,934] INFO - Logs synced successfully
+[2026-01-17 18:01:32,938] INFO - Logs synced successfully
+[2026-01-17 18:02:32,942] INFO - Logs synced successfully
+[2026-01-17 18:03:32,946] INFO - Logs synced successfully
+[2026-01-17 18:04:32,950] INFO - Logs synced successfully
+[2026-01-17 18:06:06,456] INFO - Starting Local Log Collection Agent
+[2026-01-17 18:06:06,475] INFO - System ID initialized: f04b20e2-9bdd-4af0-98da-3834540d979d
+[2026-01-17 18:06:08,669] INFO - System registered with server
+[2026-01-17 18:06:08,674] INFO - Logs synced successfully
+[2026-01-17 18:07:08,677] INFO - Logs synced successfully
+[2026-01-17 18:08:08,680] INFO - Logs synced successfully
+[2026-01-17 18:09:08,700] INFO - Logs synced successfully
+[2026-01-17 18:10:08,707] INFO - Logs synced successfully
+[2026-01-17 18:11:08,710] INFO - Logs synced successfully
+[2026-01-17 18:12:08,714] INFO - Logs synced successfully
+[2026-01-17 18:13:08,718] INFO - Logs synced successfully
+[2026-01-17 18:14:08,722] INFO - Logs synced successfully
+[2026-01-17 18:15:08,725] INFO - Logs synced successfully
+[2026-01-17 18:16:08,731] INFO - Logs synced successfully
+[2026-01-17 18:17:08,735] INFO - Logs synced successfully
+[2026-01-17 18:18:08,739] INFO - Logs synced successfully
+[2026-01-17 18:19:08,742] INFO - Logs synced successfully
+[2026-01-17 18:20:08,747] INFO - Logs synced successfully
+[2026-01-17 18:20:56,331] INFO - Starting Local Log Collection Agent
+[2026-01-17 18:20:56,351] INFO - System ID initialized: f04b20e2-9bdd-4af0-98da-3834540d979d
+[2026-01-17 18:20:58,497] INFO - System registered with server
+[2026-01-17 18:20:58,506] INFO - Logs synced successfully
+[2026-01-17 18:21:58,510] INFO - Logs synced successfully
+[2026-01-17 18:22:58,514] INFO - Logs synced successfully
+[2026-01-17 18:23:58,519] INFO - Logs synced successfully
+[2026-01-17 18:24:58,524] INFO - Logs synced successfully
+[2026-01-17 18:25:58,527] INFO - Logs synced successfully
+[2026-01-17 18:26:58,532] INFO - Logs synced successfully
+[2026-01-17 18:27:58,535] INFO - Logs synced successfully
+[2026-01-17 18:28:58,540] INFO - Logs synced successfully
+[2026-01-17 18:29:58,544] INFO - Logs synced successfully
+[2026-01-17 18:30:58,549] INFO - Logs synced successfully
+[2026-01-17 18:31:58,553] INFO - Logs synced successfully
+[2026-01-17 18:32:58,557] INFO - Logs synced successfully
+[2026-01-17 18:33:58,561] INFO - Logs synced successfully
+[2026-01-17 18:34:58,564] INFO - Logs synced successfully
+[2026-01-17 18:35:58,568] WARNING - Offline mode – logs stored locally
+[2026-01-17 18:36:58,573] WARNING - Offline mode – logs stored locally
+[2026-01-17 18:37:58,577] WARNING - Offline mode – logs stored locally
+[2026-01-17 18:38:58,581] WARNING - Offline mode – logs stored locally
+[2026-01-17 18:39:58,588] WARNING - Offline mode – logs stored locally
+[2026-01-17 18:40:10,997] INFO - Starting Local Log Collection Agent
+[2026-01-17 18:40:11,009] INFO - System ID initialized: f04b20e2-9bdd-4af0-98da-3834540d979d
+[2026-01-17 18:40:13,178] INFO - System registered with server
+[2026-01-17 18:40:13,415] INFO - Collected 15 logs
+[2026-01-17 18:40:15,517] INFO - Logs synced successfully
+[2026-01-17 18:41:00,775] INFO - Logs synced successfully
+[2026-01-17 18:41:15,580] INFO - Collected 15 logs
+[2026-01-17 18:41:17,640] INFO - Logs synced successfully
+[2026-01-17 18:42:02,811] INFO - Logs synced successfully
+[2026-01-17 18:42:17,669] INFO - Collected 15 logs
+[2026-01-17 18:42:19,726] INFO - Logs synced successfully
+[2026-01-17 18:43:04,894] INFO - Logs synced successfully
+[2026-01-17 18:43:19,782] INFO - Collected 15 logs
+[2026-01-17 18:43:21,863] INFO - Logs synced successfully
+[2026-01-17 18:44:06,945] INFO - Logs synced successfully
+[2026-01-17 18:44:21,935] INFO - Collected 15 logs
+[2026-01-17 18:44:23,991] INFO - Logs synced successfully
+[2026-01-17 18:45:08,996] INFO - Logs synced successfully
+[2026-01-17 18:45:41,325] INFO - Starting Local Log Collection Agent
+[2026-01-17 18:45:41,333] INFO - System ID initialized: f04b20e2-9bdd-4af0-98da-3834540d979d
+[2026-01-17 18:45:43,495] INFO - System registered with server
+[2026-01-17 18:45:43,589] INFO - Collected 15 logs
+[2026-01-17 18:45:45,667] INFO - Logs synced successfully
+[2026-01-17 18:46:11,047] INFO - Logs synced successfully
+[2026-01-17 18:46:45,695] INFO - Collected 15 logs
+[2026-01-17 18:46:47,753] INFO - Logs synced successfully
+[2026-01-17 18:47:13,121] INFO - Logs synced successfully
+[2026-01-17 18:47:47,810] INFO - Collected 15 logs
+[2026-01-17 18:47:49,865] INFO - Logs synced successfully
+[2026-01-17 18:48:15,166] INFO - Logs synced successfully
+[2026-01-17 18:48:49,905] INFO - Collected 15 logs
+[2026-01-17 18:48:51,939] INFO - Logs synced successfully
+[2026-01-17 18:49:17,329] INFO - Logs synced successfully
+[2026-01-17 18:49:51,991] INFO - Collected 15 logs
+[2026-01-17 18:49:54,037] INFO - Logs synced successfully
+[2026-01-17 18:50:19,393] INFO - Logs synced successfully
+[2026-01-17 18:50:54,071] INFO - Collected 15 logs
+[2026-01-17 18:50:56,149] INFO - Logs synced successfully
+[2026-01-17 18:51:21,448] INFO - Logs synced successfully
+[2026-01-17 18:52:23,523] INFO - Logs synced successfully
+[2026-01-17 18:52:42,185] INFO - Starting Local Log Collection Agent
+[2026-01-17 18:52:42,191] INFO - System ID initialized: f04b20e2-9bdd-4af0-98da-3834540d979d
+[2026-01-17 18:52:44,321] INFO - System registered with server
+[2026-01-17 18:52:44,404] INFO - Collected 15 logs
+[2026-01-17 18:52:46,536] INFO - Logs synced successfully
+[2026-01-17 18:53:23,550] INFO - Logs synced successfully
+[2026-01-17 18:53:46,591] INFO - Collected 15 logs
+[2026-01-17 18:53:48,686] INFO - Logs synced successfully
+[2026-01-17 18:54:23,557] INFO - Logs synced successfully
+[2026-01-17 18:54:48,749] INFO - Collected 15 logs
+[2026-01-17 18:54:50,834] INFO - Logs synced successfully
+[2026-01-17 18:55:23,562] INFO - Logs synced successfully
+[2026-01-17 18:55:50,886] INFO - Collected 15 logs
+[2026-01-17 18:55:52,975] INFO - Logs synced successfully
+[2026-01-17 18:56:23,568] INFO - Logs synced successfully
+[2026-01-17 18:56:53,027] INFO - Collected 15 logs
+[2026-01-17 18:56:55,132] INFO - Logs synced successfully
+[2026-01-17 18:57:23,574] INFO - Logs synced successfully
+[2026-01-17 18:57:55,189] INFO - Collected 14 logs
+[2026-01-17 18:57:57,301] INFO - Logs synced successfully
+[2026-01-17 18:58:23,579] INFO - Logs synced successfully
+[2026-01-17 18:58:57,362] INFO - Collected 14 logs
+[2026-01-17 18:58:59,426] INFO - Logs synced successfully
+[2026-01-17 18:59:23,586] INFO - Logs synced successfully
+[2026-01-17 18:59:59,491] INFO - Collected 13 logs
+[2026-01-17 19:00:01,563] INFO - Logs synced successfully
+[2026-01-17 19:00:23,591] INFO - Logs synced successfully
+[2026-01-17 19:01:01,603] INFO - Collected 13 logs
+[2026-01-17 19:01:03,706] INFO - Logs synced successfully
+[2026-01-17 19:01:23,597] INFO - Logs synced successfully
+[2026-01-17 19:02:03,761] INFO - Collected 13 logs
+[2026-01-17 19:02:05,881] INFO - Logs synced successfully
+[2026-01-17 19:02:23,603] INFO - Logs synced successfully
+[2026-01-17 19:03:05,942] INFO - Collected 13 logs
+[2026-01-17 19:03:08,066] INFO - Logs synced successfully
+[2026-01-17 19:03:23,611] INFO - Logs synced successfully
+[2026-01-17 19:04:08,110] INFO - Collected 13 logs
+[2026-01-17 19:04:10,192] INFO - Logs synced successfully
+[2026-01-17 19:04:23,617] INFO - Logs synced successfully
+[2026-01-17 19:05:10,258] INFO - Collected 13 logs
+[2026-01-17 19:05:12,360] INFO - Logs synced successfully
+[2026-01-17 19:05:23,623] INFO - Logs synced successfully
+[2026-01-17 19:06:12,415] INFO - Collected 13 logs
+[2026-01-17 19:06:14,500] INFO - Logs synced successfully
+[2026-01-17 19:06:23,628] INFO - Logs synced successfully
+[2026-01-17 19:07:14,551] INFO - Collected 13 logs
+[2026-01-17 19:07:16,662] INFO - Logs synced successfully
+[2026-01-17 19:07:23,633] INFO - Logs synced successfully
+[2026-01-17 19:08:16,716] INFO - Collected 13 logs
+[2026-01-17 19:08:18,803] INFO - Logs synced successfully
+[2026-01-17 19:08:23,638] INFO - Logs synced successfully
+[2026-01-17 19:09:18,862] INFO - Collected 13 logs
+[2026-01-17 19:09:20,918] INFO - Logs synced successfully
+[2026-01-17 19:09:23,646] INFO - Logs synced successfully
+[2026-01-17 19:10:20,954] INFO - Collected 13 logs
+[2026-01-17 19:10:23,042] INFO - Logs synced successfully
+[2026-01-17 19:10:23,652] INFO - Logs synced successfully
+[2026-01-17 19:11:23,173] INFO - Collected 13 logs
+[2026-01-17 19:11:25,265] INFO - Logs synced successfully
+[2026-01-17 19:11:25,744] INFO - Logs synced successfully
+[2026-01-17 19:12:25,367] INFO - Collected 13 logs
+[2026-01-17 19:12:27,471] INFO - Logs synced successfully
+[2026-01-17 19:12:27,819] INFO - Logs synced successfully
+[2026-01-17 19:13:27,531] INFO - Collected 13 logs
+[2026-01-17 19:13:29,619] INFO - Logs synced successfully
+[2026-01-17 19:13:29,894] INFO - Logs synced successfully
+[2026-01-19 11:12:26,361] INFO - Starting Local Log Collection Agent
+[2026-01-19 11:12:26,401] INFO - System ID initialized: f04b20e2-9bdd-4af0-98da-3834540d979d
+[2026-01-19 11:12:28,550] INFO - System registered with server
+[2026-01-19 11:12:28,553] INFO - Logs synced successfully
+[2026-01-19 11:13:28,559] INFO - Logs synced successfully
+[2026-01-19 11:14:28,569] INFO - Logs synced successfully
+[2026-01-19 11:15:28,574] INFO - Logs synced successfully
+[2026-01-19 11:16:28,578] INFO - Logs synced successfully
+[2026-01-19 11:17:28,586] INFO - Logs synced successfully
+[2026-01-19 11:18:28,607] INFO - Logs synced successfully
+[2026-01-19 11:19:28,611] INFO - Logs synced successfully
+[2026-01-19 11:20:28,616] INFO - Logs synced successfully
+[2026-01-19 11:21:28,620] INFO - Logs synced successfully
+[2026-01-19 15:48:41,946] INFO - Starting Local Log Collection Agent
+[2026-01-19 15:48:41,955] INFO - System ID initialized: f04b20e2-9bdd-4af0-98da-3834540d979d
+[2026-01-19 15:48:44,092] INFO - System registered with server
+[2026-01-19 15:48:44,404] INFO - Collected 17 logs
+[2026-01-19 15:48:46,595] INFO - Logs synced successfully
+[2026-01-19 15:49:46,659] INFO - Collected 17 logs
+[2026-01-19 15:49:48,752] INFO - Logs synced successfully
+[2026-01-19 15:50:48,785] INFO - Collected 17 logs
+[2026-01-19 15:50:50,853] INFO - Logs synced successfully
+[2026-01-19 15:51:50,895] INFO - Collected 17 logs
+[2026-01-19 15:51:52,968] INFO - Logs synced successfully
+[2026-01-19 15:52:53,023] INFO - Collected 17 logs
+[2026-01-19 15:52:55,108] INFO - Logs synced successfully
+[2026-01-19 15:53:55,143] INFO - Collected 17 logs
+[2026-01-19 15:53:57,203] INFO - Logs synced successfully
+[2026-01-19 15:54:57,234] INFO - Collected 17 logs
+[2026-01-19 15:54:59,316] INFO - Logs synced successfully
+[2026-01-19 15:55:59,345] INFO - Collected 17 logs
+[2026-01-19 15:56:01,424] INFO - Logs synced successfully
+[2026-01-19 15:57:01,457] INFO - Collected 17 logs
+[2026-01-19 15:57:03,585] INFO - Logs synced successfully
+[2026-01-19 16:10:00,047] INFO - Starting Local Log Collection Agent
+[2026-01-19 16:10:00,069] INFO - System ID initialized: f04b20e2-9bdd-4af0-98da-3834540d979d
+[2026-01-19 16:10:04,320] INFO - System registered with server
+[2026-01-19 16:10:08,406] INFO - Logs synced successfully
+[2026-01-19 16:11:12,489] INFO - Logs synced successfully
+[2026-01-19 16:12:16,577] INFO - Logs synced successfully
+[2026-01-19 16:13:20,669] INFO - Logs synced successfully
+[2026-01-19 16:14:24,778] INFO - Logs synced successfully
+[2026-01-19 16:15:28,887] INFO - Logs synced successfully
+[2026-01-19 16:16:32,922] INFO - Logs synced successfully
+[2026-01-19 16:17:36,988] INFO - Logs synced successfully
+[2026-01-19 16:18:41,060] INFO - Logs synced successfully
+[2026-01-19 16:19:45,168] INFO - Logs synced successfully
+[2026-01-19 16:20:49,280] INFO - Logs synced successfully
+[2026-01-19 16:21:53,418] INFO - Logs synced successfully
+[2026-01-19 16:22:57,534] INFO - Logs synced successfully
+[2026-01-19 16:24:01,695] INFO - Logs synced successfully
+[2026-01-19 16:25:05,814] INFO - Logs synced successfully
+[2026-01-19 16:25:57,124] INFO - Starting Local Log Collection Agent
+[2026-01-19 16:25:57,135] INFO - System ID initialized: f04b20e2-9bdd-4af0-98da-3834540d979d
+[2026-01-19 16:26:01,488] INFO - System registered with server
+[2026-01-19 16:26:02,005] INFO - Collected 11 logs
+[2026-01-19 16:26:06,086] INFO - Logs synced successfully
+[2026-01-19 16:27:06,175] INFO - Collected 11 logs
+[2026-01-19 16:27:10,278] INFO - Logs synced successfully
+[2026-01-19 16:28:10,336] INFO - Collected 11 logs
+[2026-01-19 16:28:14,443] INFO - Logs synced successfully
+[2026-01-19 16:29:14,502] INFO - Collected 11 logs
+[2026-01-19 16:29:18,583] INFO - Logs synced successfully
+[2026-01-19 16:30:18,620] INFO - Collected 11 logs
+[2026-01-19 16:30:21,088] INFO - Logs synced successfully
+[2026-01-19 16:31:21,138] INFO - Collected 11 logs
+[2026-01-19 16:31:23,276] INFO - Logs synced successfully
+[2026-01-19 16:32:23,322] INFO - Collected 11 logs
+[2026-01-19 16:32:25,498] INFO - Logs synced successfully
+[2026-01-19 16:33:25,567] INFO - Collected 11 logs
+[2026-01-19 16:33:27,717] INFO - Logs synced successfully
+[2026-01-19 16:34:27,765] INFO - Collected 11 logs
+[2026-01-19 16:34:29,935] INFO - Logs synced successfully
+[2026-01-19 16:35:29,970] INFO - Collected 11 logs
+[2026-01-19 16:35:32,050] INFO - Logs synced successfully
+[2026-01-19 16:36:32,096] INFO - Collected 11 logs
+[2026-01-19 16:36:34,267] INFO - Logs synced successfully
+[2026-01-19 16:37:34,336] INFO - Collected 11 logs
+[2026-01-19 16:37:38,467] INFO - Logs synced successfully
+[2026-01-19 16:38:38,547] INFO - Collected 11 logs
+[2026-01-19 16:38:42,661] INFO - Logs synced successfully
+[2026-01-19 16:39:42,740] INFO - Collected 11 logs
+[2026-01-19 16:39:46,847] INFO - Logs synced successfully
+[2026-01-19 16:40:46,902] INFO - Collected 11 logs
+[2026-01-19 16:40:51,037] INFO - Logs synced successfully
+[2026-01-19 16:41:51,113] INFO - Collected 11 logs
+[2026-01-19 16:41:55,239] INFO - Logs synced successfully
+[2026-01-19 16:42:55,303] INFO - Collected 11 logs
+[2026-01-19 16:42:59,420] INFO - Logs synced successfully
+[2026-01-19 16:43:59,552] INFO - Collected 10 logs
+[2026-01-19 16:44:03,646] INFO - Logs synced successfully
+[2026-01-19 16:45:03,702] INFO - Collected 10 logs
+[2026-01-19 16:45:07,812] INFO - Logs synced successfully
+[2026-01-19 16:46:07,874] INFO - Collected 10 logs
+[2026-01-19 16:46:11,968] INFO - Logs synced successfully
+[2026-01-19 16:47:12,015] INFO - Collected 10 logs
+[2026-01-19 16:47:16,091] INFO - Logs synced successfully
+[2026-01-19 16:48:16,149] INFO - Collected 10 logs
+[2026-01-19 16:48:20,278] INFO - Logs synced successfully
+[2026-01-19 16:49:20,345] INFO - Collected 10 logs
+[2026-01-19 16:49:24,511] INFO - Logs synced successfully
+[2026-01-19 16:50:24,571] INFO - Collected 10 logs
+[2026-01-19 16:50:28,659] INFO - Logs synced successfully
+[2026-01-19 16:51:28,718] INFO - Collected 10 logs
+[2026-01-19 16:51:32,813] INFO - Logs synced successfully
+[2026-01-19 16:52:32,875] INFO - Collected 10 logs
+[2026-01-19 16:52:36,955] INFO - Logs synced successfully
+[2026-01-19 16:53:37,010] INFO - Collected 10 logs
+[2026-01-19 16:53:41,134] INFO - Logs synced successfully
+[2026-01-19 16:54:41,225] INFO - Collected 10 logs
+[2026-01-19 16:54:45,332] INFO - Logs synced successfully
+[2026-01-19 16:55:45,387] INFO - Collected 10 logs
+[2026-01-19 16:55:49,497] INFO - Logs synced successfully
+[2026-01-19 16:56:49,556] INFO - Collected 10 logs
+[2026-01-19 16:56:53,690] INFO - Logs synced successfully
+[2026-01-19 16:57:53,755] INFO - Collected 10 logs
+[2026-01-19 16:57:57,836] INFO - Logs synced successfully
+[2026-01-19 16:58:57,879] INFO - Collected 10 logs
+[2026-01-19 16:59:01,951] INFO - Logs synced successfully
+[2026-01-19 17:00:02,009] INFO - Collected 10 logs
+[2026-01-19 17:00:06,068] INFO - Logs synced successfully
+[2026-01-19 17:01:06,118] INFO - Collected 10 logs
+[2026-01-19 17:01:10,206] INFO - Logs synced successfully
+[2026-01-20 08:51:33,916] INFO - Starting Local Log Collection Agent
+[2026-01-20 08:51:33,957] INFO - System ID initialized: f04b20e2-9bdd-4af0-98da-3834540d979d
+[2026-01-20 08:51:36,120] INFO - System registered with server
+[2026-01-20 08:51:36,518] INFO - Collected 15 logs
+[2026-01-20 08:51:38,682] INFO - Logs synced successfully
+[2026-01-20 08:52:38,718] INFO - Collected 15 logs
+[2026-01-20 08:52:40,793] INFO - Logs synced successfully
+[2026-01-20 08:53:40,839] INFO - Collected 15 logs
+[2026-01-20 08:53:42,943] INFO - Logs synced successfully
+[2026-01-20 08:54:42,982] INFO - Collected 15 logs
+[2026-01-20 08:54:45,102] INFO - Logs synced successfully
+[2026-01-20 08:55:45,154] INFO - Collected 15 logs
+[2026-01-20 08:55:47,252] INFO - Logs synced successfully
+[2026-01-20 08:56:47,306] INFO - Collected 15 logs
+[2026-01-20 08:56:49,399] INFO - Logs synced successfully
+[2026-01-20 08:57:49,441] INFO - Collected 15 logs
+[2026-01-20 08:57:51,522] INFO - Logs synced successfully
+[2026-01-20 08:58:51,559] INFO - Collected 15 logs
+[2026-01-20 08:58:53,624] INFO - Logs synced successfully
+[2026-01-20 08:59:53,659] INFO - Collected 15 logs
+[2026-01-20 08:59:55,720] INFO - Logs synced successfully
+[2026-01-20 09:00:55,753] INFO - Collected 15 logs
+[2026-01-20 09:00:57,825] INFO - Logs synced successfully
+[2026-01-20 09:01:57,859] INFO - Collected 15 logs
+[2026-01-20 09:01:59,979] INFO - Logs synced successfully
+[2026-01-20 09:03:00,007] INFO - Collected 15 logs
+[2026-01-20 09:03:02,115] INFO - Logs synced successfully
+[2026-01-20 09:04:02,164] INFO - Collected 15 logs
+[2026-01-20 09:04:04,280] INFO - Logs synced successfully
+[2026-01-20 09:05:04,322] INFO - Collected 15 logs
+[2026-01-20 09:05:06,422] INFO - Logs synced successfully
+[2026-01-20 09:06:06,465] INFO - Collected 15 logs
+[2026-01-20 09:06:08,568] INFO - Logs synced successfully
+[2026-01-20 09:07:08,682] INFO - Collected 15 logs
+[2026-01-20 09:07:10,787] INFO - Logs synced successfully
+[2026-01-20 09:08:10,822] INFO - Collected 15 logs
+[2026-01-20 09:08:12,934] INFO - Logs synced successfully
+[2026-01-20 09:09:12,973] INFO - Collected 15 logs
+[2026-01-20 09:09:15,059] INFO - Logs synced successfully
+[2026-01-20 09:10:15,392] INFO - Collected 15 logs
+[2026-01-20 09:10:17,490] INFO - Logs synced successfully
+[2026-01-20 09:11:17,546] INFO - Collected 15 logs
+[2026-01-20 09:11:19,685] INFO - Logs synced successfully
+[2026-01-20 09:12:19,740] INFO - Collected 15 logs
+[2026-01-20 09:12:21,842] INFO - Logs synced successfully
+[2026-01-20 09:13:21,905] INFO - Collected 15 logs
+[2026-01-20 09:13:24,010] INFO - Logs synced successfully
