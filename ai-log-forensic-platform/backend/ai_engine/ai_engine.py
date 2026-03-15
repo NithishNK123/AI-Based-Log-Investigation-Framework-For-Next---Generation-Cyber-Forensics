@@ -1,19 +1,3 @@
-"""
-ai_engine.py (FINAL – ERROR FREE)
---------------------------------
-Central AI & correlation engine for
-AI-Based Log Investigation Framework
-
-DELIVERABLES:
-- Log analysis
-- Phishing detection
-- Malware detection
-- Brute-force detection
-- Port scan detection
-- Alert generation
-- Alert correlation
-"""
-
 from backend.database.models import Alert
 from backend.database.db import db
 import re
@@ -44,20 +28,12 @@ MALWARE_PATTERNS = [
 PORT_SCAN_PATTERNS = [
     "port scan", "nmap", "masscan", "syn scan"
 ]
-
-# ======================================================
-# MAIN AI ENGINE
-# ======================================================
 def run_ai_engine(log):
     """
     Analyze a log and generate alerts if needed
     """
     msg = log.message.lower()
     system_id = log.system_id
-
-    # --------------------------------------------------
-    # PHISHING DETECTION
-    # --------------------------------------------------
     if "http" in msg:
         url = extract_url(msg)
         score = 0
@@ -78,10 +54,6 @@ def run_ai_engine(log):
                 "Critical"
             )
             return
-
-    # --------------------------------------------------
-    # BRUTE FORCE DETECTION
-    # --------------------------------------------------
     if any(p in msg for p in BRUTE_FORCE_PATTERNS):
         create_alert(
             system_id,
@@ -89,10 +61,6 @@ def run_ai_engine(log):
             "High"
         )
         return
-
-    # --------------------------------------------------
-    # MALWARE DETECTION
-    # --------------------------------------------------
     if any(p in msg for p in MALWARE_PATTERNS):
         create_alert(
             system_id,
@@ -100,10 +68,6 @@ def run_ai_engine(log):
             "Critical"
         )
         return
-
-    # --------------------------------------------------
-    # PORT SCAN DETECTION
-    # --------------------------------------------------
     if any(p in msg for p in PORT_SCAN_PATTERNS):
         create_alert(
             system_id,
@@ -111,27 +75,16 @@ def run_ai_engine(log):
             "High"
         )
         return
-
-
-# ======================================================
-# ALERT CREATION (SAFE)
-# ======================================================
 def create_alert(system_id, description, severity):
     """
     Safely create an alert (avoids duplicates)
     """
-    alert = Alert(
-        system_id=system_id,
-        description=description,
-        severity=severity
-    )
+    alert = Alert()
+    alert.system_id = system_id
+    alert.description = description
+    alert.severity = severity
     db.session.add(alert)
     db.session.commit()
-
-
-# ======================================================
-# URL EXTRACTOR
-# ======================================================
 def extract_url(text):
     urls = re.findall(r'(https?://\S+)', text)
     return urls[0] if urls else ""
@@ -153,10 +106,10 @@ def correlate_alerts(system_id):
     )
 
     if len(recent) >= 3:
-        db.session.add(Alert(
-            system_id=system_id,
-            description="Multiple correlated attacks detected (AI correlation)",
-            severity="Critical"
-        ))
+        alert = Alert()
+        alert.system_id = system_id
+        alert.description = "Multiple correlated attacks detected (AI correlation)"
+        alert.severity = "Critical"
+        db.session.add(alert)
         db.session.commit()
         

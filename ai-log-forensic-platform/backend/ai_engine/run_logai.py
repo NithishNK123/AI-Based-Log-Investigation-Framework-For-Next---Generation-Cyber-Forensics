@@ -45,11 +45,11 @@ def run_logai_analysis(limit=500):
             })
 
             if is_anomaly:
-                alert = Alert(
-                    system_id=log.system_id,
-                    description=f"Suspicious activity detected: {log.message}",
-                    severity="High"
-                )
+                alert = Alert()
+                alert.system_id = log.system_id
+                alert.description = f"Suspicious activity detected: {log.message}"
+                alert.severity = "High"
+                alert.alert_type = "anomaly"
 
                 db.session.add(alert)
 

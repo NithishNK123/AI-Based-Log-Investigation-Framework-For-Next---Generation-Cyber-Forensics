@@ -48,11 +48,10 @@ def register_user():
     # Hash password (VERY IMPORTANT)
     hashed_password = generate_password_hash(data["password"])
 
-    user = User(
-        username=data["username"],
-        password=hashed_password,
-        role=data.get("role", "analyst")
-    )
+    user = User()
+    user.username = data["username"]
+    user.password = hashed_password
+    user.role = data.get("role", "analyst")
 
     db.session.add(user)
     db.session.commit()

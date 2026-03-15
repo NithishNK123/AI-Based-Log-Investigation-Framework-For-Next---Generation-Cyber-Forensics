@@ -1,0 +1,19 @@
+========================================
+  SIEM FEATURE TESTS RUNNING            
+========================================
+[*] Setting up mock data...
+
+--- Testing Threat Intel & Anomaly parsing ---
+Log 1 (Normal): Risk = low, Event = auth_success
+Log 2 (Threat Intel): Risk = critical, Event = known_threat_actor
+
+--- Testing Anomaly Training ---
+[AI ENGINE] Baseline model trained and saved for SYS-DEV-001 using 150 logs.
+Training success: True
+Outlier Risk: None
+========================================
+  ALL TESTS COMPLETED                   
+========================================
+
+C:\Users\User\OneDrive\Desktop\Log Investigation\ai-log-forensic-platform\test_features.py:81: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  outlier = Log(system_id=sys1.system_id, message="Kernel panic", source="syslog", level="CRITICAL", timestamp=datetime.utcnow())

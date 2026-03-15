@@ -111,4 +111,18 @@ def parse_log(log):
         log.category = "network"
         log.risk = "low"
 
+    # Threat Intelligence Enrichment
+    try:
+        from backend.ai_engine.threat_intel import enrich_log_with_threat_intel
+        log = enrich_log_with_threat_intel(log)
+    except Exception as e:
+        pass
+
+    # AI Anomaly Detection
+    try:
+        from backend.ai_engine.anomaly_detector import predict_anomaly
+        log = predict_anomaly(log)
+    except Exception as e:
+        pass
+
     return log

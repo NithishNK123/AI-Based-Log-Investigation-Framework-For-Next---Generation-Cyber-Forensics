@@ -95,11 +95,11 @@ def create_alert(log, url, score):
     """
     severity = "Critical" if score >= 3 else "High"
 
-    alert = Alert(
-        system_id=log.system_id,
-        description=f"Phishing page/link detected: {url}",
-        severity=severity
-    )
+    alert = Alert()
+    alert.system_id = log.system_id
+    alert.description = f"Phishing page/link detected: {url}"
+    alert.severity = severity
+    alert.alert_type = "phishing"
 
     db.session.add(alert)
     db.session.commit()

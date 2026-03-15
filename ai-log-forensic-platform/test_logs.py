@@ -84,9 +84,3 @@ def send_logs():
     except Exception as e:
         print(f"✗ Error sending logs: {e}")
         return False
-
-if __name__ == "__main__":
-    print("AI Log Forensic Platform - Test Log Sender")
-    print(f"System ID: {SYSTEM_ID}")
-    print(f"Sending {len(sample_logs)} sample logs...")
-    send_logs()

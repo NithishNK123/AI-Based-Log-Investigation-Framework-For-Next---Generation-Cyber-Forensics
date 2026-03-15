@@ -16,6 +16,8 @@ from backend.routes.auth import auth_bp
 from backend.routes.register import register_bp
 from backend.routes.logs_api import logs_api_bp
 from backend.routes.dashboard import dashboard_bp
+from backend.routes.incidents import incidents_bp
+from backend.routes.settings import settings_bp
 
 
 def create_app():
@@ -39,6 +41,8 @@ def create_app():
     app.register_blueprint(register_bp)
     app.register_blueprint(logs_api_bp)
     app.register_blueprint(dashboard_bp)
+    app.register_blueprint(incidents_bp)
+    app.register_blueprint(settings_bp)
 
     # Create tables if not exist
     with app.app_context():
@@ -81,6 +85,14 @@ def create_app():
     @app.route("/reports")
     def reports_page():
         return render_template("reports.html")
+
+    @app.route("/incidents")
+    def incidents_page():
+        return render_template("incidents.html")
+
+    @app.route("/settings")
+    def settings_page():
+        return render_template("settings.html")
 
     # ==================================================
     # Error Handlers

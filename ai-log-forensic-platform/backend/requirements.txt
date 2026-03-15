@@ -26,6 +26,12 @@ pyyaml
 requests
 
 # -------------------------------
+# Authentication & Login
+# -------------------------------
+flask_jwt_extended
+flask_login
+
+# -------------------------------
 # AI / Data Processing
 # -------------------------------
 scikit-learn

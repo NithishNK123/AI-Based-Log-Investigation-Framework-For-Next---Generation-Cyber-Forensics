@@ -1,214 +1,177 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Logs | AI Log Forensics</title>
+{% extends "base.html" %}
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #0b0f1a;
-            color: #e5fef5;
-        }
+{% block title %}Logs | AI Log Forensics{% endblock %}
+{% block header_title %}Log Explorer & Search{% endblock %}
 
-        header {
-            background: #020617;
-            padding: 15px 25px;
-            border-bottom: 2px solid #00ff99;
-        }
+{% block content %}
 
-        header h1 {
-            margin: 0;
-            color: #00ff99;
-        }
-
-        .container {
-            display: flex;
-        }
-
-        .sidebar {
-            width: 220px;
-            background: #020617;
-            height: 100vh;
-            padding-top: 20px;
-            border-right: 2px solid #00ff99;
-        }
-
-        .sidebar a {
-            display: block;
-            padding: 12px 20px;
-            color: #66ffcc;
-            text-decoration: none;
-            border-bottom: 1px solid #0f172a;
-        }
-
-        .sidebar a:hover {
-            background: #00ff99;
-            color: #000;
-        }
-
-        .main {
-            flex: 1;
-            padding: 20px;
-        }
-
-        h3 {
-            color: #00ff99;
-            margin-bottom: 15px;
-        }
-
-        .filters {
-            margin-bottom: 15px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        select, input {
-            padding: 6px;
-            background: #020617;
-            color: #66ffcc;
-            border: 1px solid #00ff99;
-        }
-
-        button {
-            padding: 6px 12px;
-            background: #00ff99;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: #020617;
-            font-size: 13px;
-        }
-
-        th, td {
-            border: 1px solid #0f172a;
-            padding: 8px;
-        }
-
-        th {
-            color: #00ff99;
-        }
-
-        .INFO { color: #66ffcc; }
-        .WARNING { color: #ffd966; }
-        .ERROR { color: #ff4d4d; }
-        .CRITICAL { color: #ff1a1a; font-weight: bold; }
-
-        .attack {
-            background: rgba(255,0,0,0.1);
-        }
-
-        footer {
-            text-align: center;
-            padding: 15px;
-            color: #66ffcc;
-            font-size: 12px;
-        }
-    </style>
-</head>
-<body>
-
-<header>
-    <h1>📜 Log Viewer</h1>
-</header>
-
-<div class="container">
-
-    <div class="sidebar">
-        <a href="/dashboard">Dashboard</a>
-        <a href="/systems">Systems</a>
-        <a href="/logs">Logs</a>
-        <a href="/reports">Reports</a>
-        <a href="/">Logout</a>
-    </div>
-
-    <div class="main">
-        <h3>Collected Logs</h3>
-
-        <!-- Filters -->
-        <div class="filters">
-            <input type="text" id="search" placeholder="Search keyword">
-            <select id="level">
-                <option value="">All Levels</option>
-                <option value="INFO">INFO</option>
-                <option value="WARNING">WARNING</option>
-                <option value="ERROR">ERROR</option>
-                <option value="CRITICAL">CRITICAL</option>
-            </select>
-            <input type="number" id="hours" placeholder="Last N hours">
-            <button onclick="loadLogs()">Apply</button>
+    <div class="flex justify-between items-center mb-6">
+        <div>
+            <h1 class="text-2xl font-bold text-white tracking-wide">Log Explorer</h1>
+            <p class="text-brand-muted text-sm mt-1">Search, filter, and analyze centralized system logs.</p>
         </div>
-
-        <table id="logs-table">
-            <tr>
-                <th>Time</th>
-                <th>System</th>
-                <th>Source</th>
-                <th>Level</th>
-                <th>Message</th>
-            </tr>
-        </table>
+        <div class="flex gap-2">
+            <button onclick="loadLogs()" class="bg-brand-accent text-brand-dark hover:bg-brand-accent/90 transition-colors px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2">
+                <i class="fa-solid fa-rotate-right"></i> Refresh
+            </button>
+        </div>
     </div>
-</div>
 
-<footer>
-    © AI-Based Log Investigation Framework | Cyber Forensics
-</footer>
+    <!-- Filters Bar -->
+    <div class="glass-panel p-4 rounded-xl mb-6 flex flex-wrap gap-4 items-center">
+        <div class="flex-1 min-w-[200px] relative">
+            <i class="fa-solid fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-brand-muted"></i>
+            <input type="text" id="search" placeholder="Search keywords, IPs, hashes..." class="w-full bg-black/50 border border-brand-accent/30 text-white text-sm rounded-lg focus:ring-brand-accent focus:border-brand-accent block pl-10 p-2.5">
+        </div>
+        
+        <select id="level" class="bg-black/50 border border-brand-accent/30 text-white text-sm rounded-lg focus:ring-brand-accent focus:border-brand-accent block p-2.5 min-w-[140px]">
+            <option value="">All Severities</option>
+            <option value="INFO">INFO</option>
+            <option value="WARNING">WARNING</option>
+            <option value="ERROR">ERROR</option>
+            <option value="CRITICAL">CRITICAL</option>
+        </select>
+        
+        <select id="log_type" class="bg-black/50 border border-brand-accent/30 text-white text-sm rounded-lg focus:ring-brand-accent focus:border-brand-accent block p-2.5 min-w-[140px]">
+            <option value="">All Log Types</option>
+            <option value="application">Application</option>
+            <option value="system">System</option>
+            <option value="network">Network</option>
+            <option value="security">Security</option>
+        </select>
+        
+        <div class="relative min-w-[120px]">
+            <i class="fa-regular fa-clock absolute left-3 top-1/2 transform -translate-y-1/2 text-brand-muted"></i>
+            <input type="number" id="hours" placeholder="Past Hours" class="w-full bg-black/50 border border-brand-accent/30 text-white text-sm rounded-lg focus:ring-brand-accent focus:border-brand-accent block pl-10 p-2.5">
+        </div>
+        
+        <button onclick="loadLogs()" class="bg-brand-accent/10 text-brand-accent border border-brand-accent/50 hover:bg-brand-accent hover:text-brand-dark transition-all px-6 py-2.5 rounded-lg text-sm font-bold">
+            Apply Filters
+        </button>
+    </div>
 
+    <!-- Logs Table -->
+    <div class="glass-panel rounded-xl flex flex-col h-[calc(100vh-280px)] overflow-hidden">
+        <div class="overflow-x-auto flex-1 h-full">
+            <table class="w-full text-left relative" id="logs-table">
+                <thead class="sticky top-0 z-10 bg-[#020617] shadow-md">
+                    <tr>
+                        <th class="p-4 text-xs font-semibold text-brand-muted tracking-wider uppercase border-b border-brand-accent/20">Time</th>
+                        <th class="p-4 text-xs font-semibold text-brand-muted tracking-wider uppercase border-b border-brand-accent/20">System ID</th>
+                        <th class="p-4 text-xs font-semibold text-brand-muted tracking-wider uppercase border-b border-brand-accent/20">Type</th>
+                        <th class="p-4 text-xs font-semibold text-brand-muted tracking-wider uppercase border-b border-brand-accent/20">Source</th>
+                        <th class="p-4 text-xs font-semibold text-brand-muted tracking-wider uppercase border-b border-brand-accent/20">Severity</th>
+                        <th class="p-4 text-xs font-semibold text-brand-muted tracking-wider uppercase border-b border-brand-accent/20">Message</th>
+                    </tr>
+                </thead>
+                <tbody class="text-sm divide-y divide-white/5 font-mono">
+                    <!-- Populated by JS -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="p-3 border-t border-brand-accent/20 bg-brand-base/80 flex items-center justify-between text-xs text-brand-muted select-none">
+            <span id="log-count">Loading logs...</span>
+            <div class="flex items-center gap-2">
+                <span class="flex items-center gap-1"><i class="fa-solid fa-circle text-[8px] text-brand-accent animate-pulse"></i> Live Streaming</span>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
 <script>
-function loadLogs() {
-    const keyword = document.getElementById("search").value;
-    const level = document.getElementById("level").value;
-    const hours = document.getElementById("hours").value;
+    function getSeverityBadge(level) {
+        switch(level.toUpperCase()) {
+            case 'CRITICAL': return '<span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded text-[10px] font-bold bg-red-500/20 text-red-500 border border-red-500/50 uppercase tracking-wider"><i class="fa-solid fa-triangle-exclamation"></i> Critical</span>';
+            case 'ERROR': return '<span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded text-[10px] font-bold bg-orange-500/20 text-orange-400 border border-orange-500/50 uppercase tracking-wider">Error</span>';
+            case 'WARNING': return '<span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded text-[10px] font-bold bg-yellow-500/20 text-yellow-400 border border-yellow-500/50 uppercase tracking-wider">Warning</span>';
+            case 'INFO': return '<span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-400 border border-blue-500/50 uppercase tracking-wider">Info</span>';
+            default: return `<span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded text-[10px] font-bold bg-gray-500/20 text-gray-400 border border-gray-500/50 uppercase tracking-wider">${level}</span>`;
+        }
+    }
 
-    let url = "/dashboard/logs?";
-    if (keyword) url += `q=${keyword}&`;
-    if (level) url += `level=${level}&`;
-    if (hours) url += `hours=${hours}&`;
+    function getTypeIcon(type) {
+        switch((type || '').toLowerCase()) {
+            case 'security': return '<span class="text-red-400" title="Security"><i class="fa-solid fa-shield-halved"></i> Security</span>';
+            case 'network': return '<span class="text-blue-400" title="Network"><i class="fa-solid fa-network-wired"></i> Network</span>';
+            case 'system': return '<span class="text-purple-400" title="System"><i class="fa-solid fa-microchip"></i> System</span>';
+            case 'application': return '<span class="text-emerald-400" title="Application"><i class="fa-solid fa-window-maximize"></i> App</span>';
+            default: return `<span class="text-gray-400"><i class="fa-solid fa-file-lines"></i> ${(type || 'unknown')}</span>`;
+        }
+    }
 
-    fetch(url)
-        .then(res => res.json())
-        .then(logs => {
-            const table = document.getElementById("logs-table");
-            table.innerHTML = `
-                <tr>
-                    <th>Time</th>
-                    <th>System</th>
-                    <th>Source</th>
-                    <th>Level</th>
-                    <th>Message</th>
-                </tr>`;
+    function loadLogs() {
+        const keyword = document.getElementById("search").value;
+        const level = document.getElementById("level").value;
+        const log_type = document.getElementById("log_type").value;
+        const hours = document.getElementById("hours").value;
 
-            logs.forEach(log => {
-                const row = table.insertRow();
-                row.className = log.level === "CRITICAL" ? "attack" : "";
+        let url = "/dashboard/logs?";
+        if (keyword) url += `q=${encodeURIComponent(keyword)}&`;
+        if (level) url += `level=${encodeURIComponent(level)}&`;
+        if (log_type) url += `log_type=${encodeURIComponent(log_type)}&`;
+        if (hours) url += `hours=${encodeURIComponent(hours)}&`;
 
-                row.insertCell(0).innerText = log.timestamp;
-                row.insertCell(1).innerText = log.system_id;
-                row.insertCell(2).innerText = log.source;
+        const tbody = document.querySelector("#logs-table tbody");
+        tbody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-brand-muted"><i class="fa-solid fa-circle-notch fa-spin mr-2"></i>Loading logs...</td></tr>`;
 
-                const levelCell = row.insertCell(3);
-                levelCell.innerText = log.level;
-                levelCell.className = log.level;
+        fetch(url)
+            .then(res => res.json())
+            .then(logs => {
+                tbody.innerHTML = '';
+                
+                if (logs.length === 0) {
+                     tbody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-brand-muted">No logs found matching criteria.</td></tr>`;
+                     document.getElementById("log-count").innerText = "0 logs found";
+                     return;
+                }
+                
+                document.getElementById("log-count").innerText = `Showing ${logs.length} logs`;
 
-                row.insertCell(4).innerText = log.message;
+                logs.forEach(log => {
+                    const tr = document.createElement("tr");
+                    
+                    // Highlight critical rows faintly
+                    tr.className = log.level.toUpperCase() === "CRITICAL" 
+                        ? "hover:bg-red-500/10 bg-red-500/5 transition-colors" 
+                        : "hover:bg-white/5 transition-colors";
+
+                    // Formatter
+                    const dateObj = new Date(log.timestamp);
+                    const timeStr = isNaN(dateObj) ? log.timestamp : dateObj.toLocaleString();
+
+                    tr.innerHTML = `
+                        <td class="p-3 text-[11px] text-brand-muted whitespace-nowrap">${timeStr}</td>
+                        <td class="p-3 text-[11px] text-white" title="${log.system_id}">${log.system_id.substring(0,8)}...</td>
+                        <td class="p-3 text-xs">${getTypeIcon(log.log_type)}</td>
+                        <td class="p-3 text-xs text-brand-muted truncate max-w-[150px]" title="${log.source}">${log.source}</td>
+                        <td class="p-3">${getSeverityBadge(log.level)}</td>
+                        <td class="p-3 text-xs text-brand-muted max-w-lg truncate" title="${log.message.replace(/"/g, '&quot;')}">${log.message}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            })
+            .catch(err => {
+                console.error("Fetch error:", err);
+                tbody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-red-400">Error fetching logs.</td></tr>`;
+                document.getElementById("log-count").innerText = "Error loading logs";
             });
-        });
-}
+    }
 
-// Auto load
-loadLogs();
+    // Connect Enter key on search
+    document.getElementById("search").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            loadLogs();
+        }
+    });
 
-// Auto refresh every 30 sec
-setInterval(loadLogs, 30000);
+    // Auto load ONCE initially
+    loadLogs();
+    
+    // Auto refresh every 15 sec for a slightly more live feel
+    setInterval(loadLogs, 15000);
 </script>
-
-</body>
-</html>
+{% endblock %}

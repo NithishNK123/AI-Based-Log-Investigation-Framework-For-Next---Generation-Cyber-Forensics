@@ -1,160 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Systems | AI Log Forensics</title>
+{% extends "base.html" %}
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #0b0f1a;
-            color: #e5fef5;
-        }
+{% block title %}Systems | AI Log Forensics{% endblock %}
+{% block header_title %}Endpoint Systems Management{% endblock %}
 
-        header {
-            background: #020617;
-            padding: 15px 25px;
-            border-bottom: 2px solid #00ff99;
-        }
+{% block content %}
 
-        header h1 {
-            margin: 0;
-            color: #00ff99;
-        }
-
-        .container {
-            display: flex;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 220px;
-            background: #020617;
-            height: 100vh;
-            padding-top: 20px;
-            border-right: 2px solid #00ff99;
-        }
-
-        .sidebar a {
-            display: block;
-            padding: 12px 20px;
-            color: #66ffcc;
-            text-decoration: none;
-            border-bottom: 1px solid #0f172a;
-        }
-
-        .sidebar a:hover {
-            background: #00ff99;
-            color: #000;
-        }
-
-        /* Main Content */
-        .main {
-            flex: 1;
-            padding: 20px;
-        }
-
-        h3 {
-            color: #00ff99;
-            margin-bottom: 15px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: #020617;
-        }
-
-        th, td {
-            border: 1px solid #0f172a;
-            padding: 10px;
-            text-align: left;
-            font-size: 14px;
-        }
-
-        th {
-            color: #00ff99;
-        }
-
-        .online {
-            color: #00ff99;
-            font-weight: bold;
-        }
-
-        .offline {
-            color: #ff4d4d;
-            font-weight: bold;
-        }
-
-        footer {
-            text-align: center;
-            padding: 15px;
-            color: #66ffcc;
-            font-size: 12px;
-        }
-    </style>
-</head>
-<body>
-
-<header>
-    <h1>🖥️ Registered Systems</h1>
-</header>
-
-<div class="container">
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <a href="/dashboard">Dashboard</a>
-        <a href="/systems">Systems</a>
-        <a href="/logs">Logs</a>
-        <a href="/reports">Reports</a>
-        <a href="/">Logout</a>
+    <div class="flex justify-between items-center mb-8">
+        <div>
+            <h1 class="text-2xl font-bold text-white tracking-wide">Registered Endpoints</h1>
+            <p class="text-brand-muted text-sm mt-1">Manage and monitor systems connected to the SOC platform.</p>
+        </div>
+        <button class="bg-brand-accent/10 text-brand-accent hover:bg-brand-accent/20 border border-brand-accent/50 transition-colors px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2">
+            <i class="fa-solid fa-plus"></i> Add System
+        </button>
     </div>
 
-    <!-- Main Content -->
-    <div class="main">
-        <h3>Endpoint Systems</h3>
-
-        <table id="systems-table">
-            <tr>
-                <th>System ID</th>
-                <th>Hostname</th>
-                <th>Last Seen</th>
-                <th>Status</th>
-            </tr>
-        </table>
+    <!-- Systems Table -->
+    <div class="glass-panel rounded-xl overflow-hidden flex flex-col">
+        <div class="p-5 border-b border-brand-accent/20 flex justify-between items-center bg-brand-base/50">
+            <h3 class="text-lg font-semibold text-white"><i class="fa-solid fa-server text-brand-accent mr-2"></i>Endpoints</h3>
+            <div class="relative">
+                <i class="fa-solid fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-brand-muted"></i>
+                <input type="text" placeholder="Search systems..." class="bg-black/50 border border-brand-accent/30 text-white text-sm rounded-lg focus:ring-brand-accent focus:border-brand-accent block w-64 pl-10 p-2 placeholder-brand-muted/50">
+            </div>
+        </div>
+        
+        <div class="overflow-x-auto">
+            <table class="w-full text-left" id="systems-table">
+                <thead>
+                    <tr>
+                        <th class="p-4 text-xs font-semibold text-brand-accent tracking-wider uppercase border-b border-brand-accent/20">System ID</th>
+                        <th class="p-4 text-xs font-semibold text-brand-accent tracking-wider uppercase border-b border-brand-accent/20">Hostname</th>
+                        <th class="p-4 text-xs font-semibold text-brand-accent tracking-wider uppercase border-b border-brand-accent/20">Last Seen</th>
+                        <th class="p-4 text-xs font-semibold text-brand-accent tracking-wider uppercase border-b border-brand-accent/20">Status</th>
+                        <th class="p-4 text-xs font-semibold text-brand-accent tracking-wider uppercase border-b border-brand-accent/20 text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="text-sm divide-y divide-white/5">
+                    <!-- Populated by JS -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="p-4 border-t border-brand-accent/20 bg-brand-base/50 flex items-center justify-between">
+            <span class="text-sm text-brand-muted">Showing all registered agents.</span>
+            <div class="flex gap-2">
+                <button class="px-3 py-1 rounded text-sm text-brand-muted hover:text-white hover:bg-white/10 transition-colors disabled:opacity-50" disabled>Previous</button>
+                <button class="px-3 py-1 rounded text-sm text-brand-muted hover:text-white hover:bg-white/10 transition-colors" disabled>Next</button>
+            </div>
+        </div>
     </div>
 
-</div>
+{% endblock %}
 
-<footer>
-    © AI-Based Log Investigation Framework | Cyber Forensics
-</footer>
-
+{% block scripts %}
 <script>
     fetch("/dashboard/systems")
         .then(response => response.json())
         .then(systems => {
-            const table = document.getElementById("systems-table");
+            const tbody = document.querySelector("#systems-table tbody");
+            
+            if(systems.length === 0) {
+                 tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-brand-muted">No systems registered yet. Install an agent to begin.</td></tr>`;
+                 return;
+            }
 
             systems.forEach(system => {
-                const row = table.insertRow();
-
-                row.insertCell(0).innerText = system.system_id;
-                row.insertCell(1).innerText = system.hostname;
-                row.insertCell(2).innerText = system.last_seen;
-
-                // Simple online/offline logic (demo)
-                const statusCell = row.insertCell(3);
-                if (system.last_seen) {
-                    statusCell.innerHTML = '<span class="online">ONLINE</span>';
-                } else {
-                    statusCell.innerHTML = '<span class="offline">OFFLINE</span>';
+                const tr = document.createElement("tr");
+                tr.className = "hover:bg-white/5 transition-colors group";
+                
+                // Parse date
+                const lastSeenDate = new Date(system.last_seen);
+                const timeStr = isNaN(lastSeenDate) ? system.last_seen : lastSeenDate.toLocaleString();
+                
+                // Status badge logic
+                let statusBadge = '<span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-md text-xs font-medium bg-red-500/10 text-red-500 border border-red-500/20"><span class="w-1.5 h-1.5 rounded-full bg-red-500"></span> Offline</span>';
+                if (system.last_seen) { // A real app would check if (now - last_seen) < 5 mins
+                    statusBadge = '<span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-md text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Online</span>';
                 }
+
+                tr.innerHTML = `
+                    <td class="p-4 text-brand-muted font-mono text-xs">${system.system_id}</td>
+                    <td class="p-4 font-medium text-white group-hover:text-brand-accent transition-colors flex items-center gap-3">
+                        <div class="w-8 h-8 rounded bg-brand-accent/10 flex items-center justify-center text-brand-accent">
+                            <i class="fa-solid fa-desktop"></i>
+                        </div>
+                        ${system.hostname}
+                    </td>
+                    <td class="p-4 text-brand-muted">${timeStr}</td>
+                    <td class="p-4">${statusBadge}</td>
+                    <td class="p-4 text-right">
+                        <button class="text-brand-muted hover:text-brand-accent transition-colors p-2" title="View Logs">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
             });
+        })
+        .catch(err => {
+             console.error("Error fetching systems:", err);
+             document.querySelector("#systems-table tbody").innerHTML = `<tr><td colspan="5" class="p-8 text-center text-red-400">Error loading systems data.</td></tr>`;
         });
 </script>
-
-</body>
-</html>
+{% endblock %}

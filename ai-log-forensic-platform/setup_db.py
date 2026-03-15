@@ -21,11 +21,10 @@ with app.app_context():
     admin = User.query.filter_by(username='admin').first()
     if not admin:
         # Create default admin user
-        admin = User(
-            username='admin',
-            password=generate_password_hash('admin123'),
-            role='admin'
-        )
+        admin = User()
+        admin.username = 'admin'
+        admin.password = generate_password_hash('admin123')
+        admin.role = 'admin'
         db.session.add(admin)
         db.session.commit()
         print("✓ Admin user created: username='admin', password='admin123'")
@@ -35,11 +34,10 @@ with app.app_context():
     # Create test user for non-admin
     test_user = User.query.filter_by(username='analyst').first()
     if not test_user:
-        analyst = User(
-            username='analyst',
-            password=generate_password_hash('analyst123'),
-            role='analyst'
-        )
+        analyst = User()
+        analyst.username = 'analyst'
+        analyst.password = generate_password_hash('analyst123')
+        analyst.role = 'analyst'
         db.session.add(analyst)
         db.session.commit()
         print("✓ Analyst user created: username='analyst', password='analyst123'")

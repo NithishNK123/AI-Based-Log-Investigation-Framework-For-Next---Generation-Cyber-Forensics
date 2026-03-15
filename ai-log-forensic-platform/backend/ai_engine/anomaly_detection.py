@@ -1,17 +1,4 @@
-"""
-anomaly_detection.py
---------------------
-Performs anomaly detection on logs.
 
-Current implementation:
-- Rule-based detection
-- Keyword-based suspicious activity detection
-- Simple frequency-based anomaly logic
-
-This module acts as a placeholder for real LogAI ML/DL models.
-"""
-
-# Suspicious keywords commonly seen in attacks
 SUSPICIOUS_KEYWORDS = [
     "failed password",
     "unauthorized",

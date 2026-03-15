@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+
+{% block title %}Settings | AI Log Forensics{% endblock %}
+{% block header_title %}Platform Settings & Rules{% endblock %}
+
+{% block content %}
+
+    <div class="flex justify-between items-center mb-6">
+        <div>
+            <h1 class="text-2xl font-bold text-white tracking-wide">Configuration Matrix</h1>
+            <p class="text-brand-muted text-sm mt-1">Manage automated alert routing and platform preferences.</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Add New Rule -->
+        <div class="glass-panel p-6 rounded-xl flex flex-col gap-6 h-fit">
+            <h3 class="text-lg font-semibold text-white border-b border-brand-accent/20 pb-3 flex items-center gap-2">
+                <i class="fa-solid fa-plus text-brand-accent"></i> New Routing Rule
+            </h3>
+
+            <div>
+                <label class="block text-sm font-medium text-brand-muted mb-2">Delivery Channel</label>
+                <div class="relative">
+                    <select id="new-channel" class="w-full bg-black/50 border border-brand-accent/30 text-white text-sm rounded-lg focus:ring-brand-accent focus:border-brand-accent block p-3 outline-none">
+                        <option value="Email">Email Protocol</option>
+                        <option value="Slack">Slack Webhook</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-brand-muted mb-2">Target Destination</label>
+                <div class="relative">
+                    <input type="text" id="new-destination" placeholder="user@domain.com or https://hooks.slack.com/..." class="w-full bg-black/50 border border-brand-accent/30 text-white text-sm rounded-lg focus:ring-brand-accent focus:border-brand-accent block p-3 outline-none">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-brand-muted mb-2">Trigger Severity</label>
+                <div class="relative">
+                    <select id="new-severity" class="w-full bg-black/50 border border-brand-accent/30 text-white text-sm rounded-lg focus:ring-brand-accent focus:border-brand-accent block p-3 outline-none">
+                        <option value="ALL">All Alerts (Verbose)</option>
+                        <option value="Critical">Critical Only</option>
+                        <option value="High">High & Critical</option>
+                    </select>
+                </div>
+            </div>
+
+            <button onclick="createRule()" class="mt-2 w-full bg-brand-accent text-brand-dark hover:bg-brand-accent/90 transition-all shadow-[0_0_15px_rgba(0,255,153,0.3)] px-4 py-3 rounded-lg text-sm font-bold flex items-center justify-center gap-2">
+                <i class="fa-solid fa-satellite-dish"></i> Deploy Rule
+            </button>
+        </div>
+
+        <!-- Rules List -->
+        <div class="lg:col-span-2 glass-panel p-6 rounded-xl flex flex-col">
+            <h3 class="text-lg font-semibold text-white border-b border-brand-accent/20 pb-3 flex items-center gap-2 justify-between">
+                <span><i class="fa-solid fa-route text-blue-400"></i> Active Dispatch Rules</span>
+                <button onclick="loadRules()" class="text-xs bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded transition-colors text-brand-muted">
+                    <i class="fa-solid fa-rotate-right mr-1"></i> Refresh
+                </button>
+            </h3>
+
+            <div class="mt-4 flex-1 overflow-x-auto min-h-[300px]">
+                <table class="w-full text-left relative" id="rules-table">
+                    <thead class="sticky top-0 bg-[#020617] shadow-md z-10">
+                        <tr>
+                            <th class="p-3 text-xs font-semibold text-brand-muted tracking-wider uppercase border-b border-brand-accent/20">Status</th>
+                            <th class="p-3 text-xs font-semibold text-brand-muted tracking-wider uppercase border-b border-brand-accent/20">Channel</th>
+                            <th class="p-3 text-xs font-semibold text-brand-muted tracking-wider uppercase border-b border-brand-accent/20">Destination</th>
+                            <th class="p-3 text-xs font-semibold text-brand-muted tracking-wider uppercase border-b border-brand-accent/20">Trigger</th>
+                            <th class="p-3 text-xs font-semibold text-brand-muted tracking-wider uppercase border-b border-brand-accent/20 text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm divide-y divide-white/5 font-mono" id="rules-list">
+                        <!-- Loaded via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function getChannelIcon(channel) {
+        if (channel.toUpperCase() === 'SLACK') return '<i class="fa-brands fa-slack text-purple-400"></i> Slack';
+        return '<i class="fa-solid fa-envelope text-blue-400"></i> Email';
+    }
+
+    function loadRules() {
+        const tbody = document.getElementById("rules-list");
+        tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-brand-muted"><i class="fa-solid fa-circle-notch fa-spin mr-2"></i>Loading rules...</td></tr>`;
+
+        fetch("/api/settings/notifications")
+            .then(res => res.json())
+            .then(rules => {
+                tbody.innerHTML = '';
+                
+                if (rules.length === 0) {
+                     tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-brand-muted border-dashed border-white/10 border m-4 rounded-lg bg-white/5">No active routing rules found. Alerts will only be visible in the dashboard.</td></tr>`;
+                     return;
+                }
+
+                rules.forEach(r => {
+                    const tr = document.createElement("tr");
+                    tr.className = "hover:bg-white/5 transition-colors";
+
+                    const statusBadge = r.is_active 
+                        ? `<span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/50 py-0.5 px-2 rounded text-[10px] font-bold uppercase cursor-pointer" onclick="toggleRule(${r.id})">Active</span>`
+                        : `<span class="bg-gray-500/20 text-gray-400 border border-gray-500/50 py-0.5 px-2 rounded text-[10px] font-bold uppercase cursor-pointer hover:border-emerald-500/50 hover:text-emerald-400 transition-colors" onclick="toggleRule(${r.id})">Disabled</span>`;
+
+                    tr.innerHTML = `
+                        <td class="p-3">${statusBadge}</td>
+                        <td class="p-3 text-[11px] font-bold tracking-wide">${getChannelIcon(r.channel)}</td>
+                        <td class="p-3 text-[11px] text-brand-muted truncate max-w-[200px]" title="${r.destination}">${r.destination}</td>
+                        <td class="p-3 text-[11px] text-orange-300 font-bold bg-orange-500/5 px-2 rounded">${r.target_severity}</td>
+                        <td class="p-3 text-right">
+                            <button onclick="deleteRule(${r.id})" class="text-red-400 hover:text-red-300 hover:bg-red-400/10 p-1.5 rounded transition-colors" title="Delete Rule">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            })
+            .catch(err => {
+                tbody.innerHTML = `<tr><td colspan="5" class="p-8 text-center text-red-400">Error fetching rules.</td></tr>`;
+            });
+    }
+
+    function createRule() {
+        const channel = document.getElementById("new-channel").value;
+        const destination = document.getElementById("new-destination").value.trim();
+        const severity = document.getElementById("new-severity").value;
+
+        if (!destination) {
+            alert("Destination is required.");
+            return;
+        }
+
+        fetch("/api/settings/notifications", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                channel: channel,
+                destination: destination,
+                target_severity: severity,
+                user_id: 1 // fallback demo user
+            })
+        }).then(res => {
+            if (res.ok) {
+                document.getElementById("new-destination").value = '';
+                loadRules();
+            } else {
+                alert("Failed to create rule.");
+            }
+        });
+    }
+
+    function deleteRule(id) {
+        if(!confirm("Destroy this routing rule?")) return;
+        
+        fetch(`/api/settings/notifications/${id}`, { method: "DELETE" })
+            .then(res => { if(res.ok) loadRules(); });
+    }
+
+    function toggleRule(id) {
+        fetch(`/api/settings/notifications/${id}/toggle`, { method: "PUT" })
+            .then(res => { if(res.ok) loadRules(); });
+    }
+
+    // Auto load
+    document.addEventListener("DOMContentLoaded", loadRules);
+</script>
+{% endblock %}

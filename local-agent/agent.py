@@ -172,10 +172,3 @@ def run_agent():
             logger.error(f"Agent error: {str(e)}")
 
         time.sleep(sync_interval)
-
-
-# ========================================================
-# ENTRY POINT
-# ========================================================
-if __name__ == "__main__":
-    run_agent()
